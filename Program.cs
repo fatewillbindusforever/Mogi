@@ -20,7 +20,7 @@ namespace meichan
         {
             var discord = new DiscordClient(new DiscordConfiguration()
             {
-                Token = "bottoken",
+                Token = "bottokeni",
                 TokenType = TokenType.Bot,
                 AutoReconnect = true,
                 UseRelativeRatelimit = true,
@@ -38,10 +38,9 @@ namespace meichan
             {
                 _ = Task.Run(async () =>
                 {
-                    string nickname = e.Member.DisplayName;
-                    var kanal = await s.GetChannelAsync(channelid);
-                    await kanal.SendMessageAsync($"**{nickname}, sunucuya giriş yaptı!**");
-                    Console.WriteLine($"{nickname}, sunucuya giriş yaptı.");
+                    var kanal = await s.GetChannelAsync(kanalınidsi);
+                    await kanal.SendMessageAsync($"**{e.Member.DisplayName}, sunucuya giriş yaptı!**");
+                    Console.WriteLine($"{e.Member.DisplayName}, sunucuya giriş yaptı.");
                 });
                 return Task.CompletedTask;
             };
