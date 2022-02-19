@@ -18,7 +18,7 @@ namespace mei
         {
             var discord = new DiscordClient(new DiscordConfiguration()
             {
-                Token = "type your token", 
+                Token = "type your token",
                 TokenType = TokenType.Bot,
                 AutoReconnect = true,
             });
@@ -26,7 +26,7 @@ namespace mei
            
             var commands = discord.UseCommandsNext(new CommandsNextConfiguration()
             {
-                StringPrefixes = new[] { "!" } // prefixi buradan değiştirilebilir.
+                StringPrefixes = new[] { "!" } 
             });
 
             commands.RegisterCommands < Write > ();
