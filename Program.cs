@@ -18,7 +18,7 @@ namespace mei
         {
             var discord = new DiscordClient(new DiscordConfiguration()
             {
-                Token = "type your token",
+                Token = "bottoken",
                 TokenType = TokenType.Bot,
                 AutoReconnect = true,
             });
@@ -31,6 +31,17 @@ namespace mei
 
             commands.RegisterCommands < Write > ();
 
+            discord.GuildMemberAdded += (s, e) =>
+            {
+                _ = Task.Run(async () =>
+                {
+                    string nickname = e.Member.DisplayName;
+                    var kanal = await s.GetChannelAsync(channelid);
+                    await kanal.SendMessageAsync($"**{nickname}, sunucuya giriş yaptı!**");
+                    Console.WriteLine($"{nickname}, sunucuya giriş yaptı."); 
+                });
+                return Task.CompletedTask;
+            };
 
             discord.MessageCreated += async (s, e) =>
             {
