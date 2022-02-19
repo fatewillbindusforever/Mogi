@@ -28,7 +28,7 @@ namespace mei.Commands
             }
 
         }
-
+        
         [Command("avatar"), Aliases("pp"), Description("Kendinizin ya da bir başkasının profil fotoğrafını görmenize yarar.")]
         public async Task Avatar(CommandContext ctx, DiscordUser user = null)
         {
@@ -56,6 +56,7 @@ namespace mei.Commands
                 var msg = await ctx.Channel.SendMessageAsync(embed);
             }
         }
+        
         [Command("kod"), Aliases("github", "opensource"), Description("Botun kaynak kodlarına ulaşmak için kullanılır.")]
         public async Task Kod(CommandContext ctx, DiscordUser user = null)
         {
