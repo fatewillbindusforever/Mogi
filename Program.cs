@@ -38,9 +38,33 @@ namespace mei
                 {
                     await e.Message.RespondAsync("Selam!");
                 }
-                else if(e.Message.Content.ToLower() == "ping")
+                else if (e.Message.Content.ToLower() == "slm")
+                {
+                    await e.Message.RespondAsync("Selam!");
+                }
+                else if (e.Message.Content.ToLower() == "naber")
+                {
+                    await e.Message.RespondAsync("İyi senden?");
+                }
+                else if (e.Message.Content.ToLower() == "sa")
+                {
+                    await e.Message.RespondAsync("Aleyküm Selam");
+                }
+                else if (e.Message.Content.ToLower() == "selamun aleyküm")
+                {
+                    await e.Message.RespondAsync("Aleyküm Selam!");
+                }
+                else if (e.Message.Content.ToLower() == "selamun aleykum")
+                {
+                    await e.Message.RespondAsync("Aleyküm Selam");
+                }
+                else if (e.Message.Content.ToLower() == "ping")
                 {
                     await e.Message.RespondAsync("pong!");
+                }
+                else if (e.Message.Content.ToLower() == "nbr")
+                {
+                    await e.Message.RespondAsync("İyi senden?");
                 }
             };
 
