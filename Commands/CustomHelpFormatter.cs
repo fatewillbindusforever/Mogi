@@ -19,11 +19,6 @@ namespace mei.Commands
         {
             _embed = new DiscordEmbedBuilder();
             _strBuilder = new StringBuilder();
-
-            // Help formatters do support dependency injection.
-            // Any required services can be specified by declaring constructor parameters. 
-
-            // Other required initialization here ...
         }
 
         public override BaseHelpFormatter WithCommand(Command command)
