@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DSharpPlus;
@@ -20,7 +22,7 @@ namespace mei
         {
             var discord = new DiscordClient(new DiscordConfiguration()
             {
-                Token = "bottoken",
+                Token = "bottokeni",
                 TokenType = TokenType.Bot,
                 AutoReconnect = true,
                 UseRelativeRatelimit = true,
@@ -35,14 +37,19 @@ namespace mei
             });
 
             commands.RegisterCommands<Komutlar>();
+            commands.SetHelpFormatter<CustomHelpFormatter>();
 
             discord.GuildMemberAdded += (s, e) =>
             {
                 _ = Task.Run(async () =>
                 {
                     var kanal = await s.GetChannelAsync(kanalid);
-                    await kanal.SendMessageAsync($"**{e.Member.DisplayName}, sunucuya giriş yaptı!**");
-                    Console.WriteLine($"{e.Member.DisplayName}, sunucuya giriş yaptı.");
+                    var embed = new DiscordEmbedBuilder
+                    {
+                        Description = $"{e.Member.Mention} aramıza katıldı!",
+                    };
+                    var msg = await kanal.SendMessageAsync(embed);
+                    Console.WriteLine($"{e.Member.DisplayName}, sunucuya giriş yaptı. {DateTime.UtcNow}");
                 });
                 return Task.CompletedTask;
             };
@@ -63,7 +70,7 @@ namespace mei
                 }
                 else if (e.Message.Content.ToLower() == "sa")
                 {
-                    await e.Message.RespondAsync("Aleyküm Selam");
+                    await e.Message.RespondAsync("Aleyküm Selam.");
                 }
                 else if (e.Message.Content.ToLower() == "selamun aleyküm")
                 {
@@ -71,7 +78,7 @@ namespace mei
                 }
                 else if (e.Message.Content.ToLower() == "selamun aleykum")
                 {
-                    await e.Message.RespondAsync("Aleyküm Selam");
+                    await e.Message.RespondAsync("Aleyküm Selam.");
                 }
                 else if (e.Message.Content.ToLower() == "ping")
                 {
@@ -81,15 +88,49 @@ namespace mei
                 {
                     await e.Message.RespondAsync("İyi senden?");
                 }
+                else if (e.Message.Content.ToLower() == "sea")
+                {
+                    await e.Message.RespondAsync("Aleyküm Selam.");
+                }
+
+                string msg = e.Message.Content.ToLower();
+                List<string> BadWords = new List<string>()
+                {
+                    "sikerim",
+                    "siktir",
+                    "sikecem",
+                    "ibne",
+                    "amına",
+                    "orospu",
+                    "gavat",
+                    "kahpe",
+                    "piç",
+                    "fuck",
+                    "motherfucker",
+                    "porno",
+                    "porn",
+                    "sikiş",
+                    "sikişelim",
+                    "sikik",
+                    "sikis",
+                    "göt",
+                };
+                if (BadWords.Any(x => msg.Contains(x)))
+                {
+                    await e.Message.DeleteAsync();
+                    await e.Message.Channel.SendMessageAsync("Şşş küfür yok!");
+                }
             };
 
             await discord.ConnectAsync();
             Console.WriteLine("Mei burada!");
             await Task.Delay(-1);
         }
+
         private static async Task GuildDownloadCompleted(DiscordClient sender, GuildDownloadCompletedEventArgs e)
         {
-            await sender.UpdateStatusAsync(new DiscordActivity("In Development", ActivityType.Watching), UserStatus.Idle);
+            await sender.UpdateStatusAsync(new DiscordActivity("Geliştiriliyor", ActivityType.Watching), UserStatus.Idle);
+
         }
     }
 }
