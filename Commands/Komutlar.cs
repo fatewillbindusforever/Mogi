@@ -15,13 +15,21 @@ namespace mei.Commands
     public class Komutlar : BaseCommandModule
     {
         [Command("yaz"), Aliases("write", "wrote", "yazdır", "say"), Description("Bota istediğinizi yazdırır."), RequirePermissions(DSharpPlus.Permissions.Administrator)]
-        public async Task GreetCommand(CommandContext ctx, [RemainingText] string name)
+        public async Task GreetCommand(CommandContext ctx, [RemainingText] string name = null)
         {
-            await ctx.Message.DeleteAsync();
-            await ctx.Message.Channel.SendMessageAsync($"{name}");
+            if (name != null)
+            {
+                await ctx.Message.DeleteAsync();
+                await ctx.Message.Channel.SendMessageAsync($"{name}");
+            }
+            else
+            {
+                await ctx.RespondAsync("Yazabilmem için bir şeyler söyleeee!").ConfigureAwait(false);
+            }
+
         }
 
-        [Command("avatar"), Description("Kendinizin ya da bir başkasının profil fotoğrafını görmenize yarar.")]
+        [Command("avatar"), Aliases("pp"), Description("Kendinizin ya da bir başkasının profil fotoğrafını görmenize yarar.")]
         public async Task Avatar(CommandContext ctx, DiscordUser user = null)
         {
             if (user == null)
