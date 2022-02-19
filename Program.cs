@@ -6,9 +6,9 @@ using DSharpPlus.CommandsNext;
 using DSharpPlus.CommandsNext.Attributes;
 using DSharpPlus.Entities;
 using DSharpPlus.EventArgs;
-using meichan.Commands;
+using mei.Commands;
 
-namespace meichan
+namespace mei
 {
     class Program
     {
@@ -20,12 +20,14 @@ namespace meichan
         {
             var discord = new DiscordClient(new DiscordConfiguration()
             {
-                Token = "bottokeni",
+                Token = "bottoken",
                 TokenType = TokenType.Bot,
                 AutoReconnect = true,
                 UseRelativeRatelimit = true,
                 Intents = DiscordIntents.All
             });
+
+            discord.GuildDownloadCompleted += GuildDownloadCompleted;
 
             var commands = discord.UseCommandsNext(new CommandsNextConfiguration()
             {
@@ -38,7 +40,7 @@ namespace meichan
             {
                 _ = Task.Run(async () =>
                 {
-                    var kanal = await s.GetChannelAsync(kanalınidsi);
+                    var kanal = await s.GetChannelAsync(kanalid);
                     await kanal.SendMessageAsync($"**{e.Member.DisplayName}, sunucuya giriş yaptı!**");
                     Console.WriteLine($"{e.Member.DisplayName}, sunucuya giriş yaptı.");
                 });
@@ -84,6 +86,10 @@ namespace meichan
             await discord.ConnectAsync();
             Console.WriteLine("Mei burada!");
             await Task.Delay(-1);
+        }
+        private static async Task GuildDownloadCompleted(DiscordClient sender, GuildDownloadCompletedEventArgs e)
+        {
+            await sender.UpdateStatusAsync(new DiscordActivity("In Development", ActivityType.Watching), UserStatus.Idle);
         }
     }
 }
