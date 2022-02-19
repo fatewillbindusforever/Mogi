@@ -9,7 +9,7 @@ using DSharpPlus.CommandsNext.Attributes;
 using DSharpPlus.Entities;
 using DSharpPlus.Interactivity.Extensions;
 
-namespace meichan.Commands
+namespace mei.Commands
 {
 
     public class Komutlar : BaseCommandModule
