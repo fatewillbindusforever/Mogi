@@ -69,7 +69,7 @@ namespace mei
             };
 
             await discord.ConnectAsync();
-	    Console.WriteLine("Mei burada!");
+	        Console.WriteLine("Mei burada!");
             await Task.Delay(-1);
          }
     }
