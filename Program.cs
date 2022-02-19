@@ -130,7 +130,6 @@ namespace mei
         private static async Task GuildDownloadCompleted(DiscordClient sender, GuildDownloadCompletedEventArgs e)
         {
             await sender.UpdateStatusAsync(new DiscordActivity("Geliştiriliyor", ActivityType.Watching), UserStatus.Idle);
-
         }
     }
 }
