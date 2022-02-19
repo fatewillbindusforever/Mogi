@@ -4,9 +4,11 @@ using System.Threading.Tasks;
 using DSharpPlus;
 using DSharpPlus.CommandsNext;
 using DSharpPlus.CommandsNext.Attributes;
-using mei.Commands;
+using DSharpPlus.Entities;
+using DSharpPlus.EventArgs;
+using meichan.Commands;
 
-namespace mei
+namespace meichan
 {
     class Program
     {
@@ -21,15 +23,16 @@ namespace mei
                 Token = "bottoken",
                 TokenType = TokenType.Bot,
                 AutoReconnect = true,
+                UseRelativeRatelimit = true,
+                Intents = DiscordIntents.All
             });
 
-           
             var commands = discord.UseCommandsNext(new CommandsNextConfiguration()
             {
-                StringPrefixes = new[] { "!" } 
+                StringPrefixes = new[] { "!" }
             });
 
-            commands.RegisterCommands < Write > ();
+            commands.RegisterCommands<Komutlar>();
 
             discord.GuildMemberAdded += (s, e) =>
             {
@@ -38,7 +41,7 @@ namespace mei
                     string nickname = e.Member.DisplayName;
                     var kanal = await s.GetChannelAsync(channelid);
                     await kanal.SendMessageAsync($"**{nickname}, sunucuya giriş yaptı!**");
-                    Console.WriteLine($"{nickname}, sunucuya giriş yaptı."); 
+                    Console.WriteLine($"{nickname}, sunucuya giriş yaptı.");
                 });
                 return Task.CompletedTask;
             };
@@ -80,8 +83,8 @@ namespace mei
             };
 
             await discord.ConnectAsync();
-	        Console.WriteLine("Mei burada!");
+            Console.WriteLine("Mei burada!");
             await Task.Delay(-1);
-         }
+        }
     }
 }
