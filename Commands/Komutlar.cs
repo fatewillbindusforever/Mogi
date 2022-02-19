@@ -56,5 +56,10 @@ namespace mei.Commands
                 var msg = await ctx.Channel.SendMessageAsync(embed);
             }
         }
+        [Command("kod"), Aliases("github", "opensource"), Description("Botun kaynak kodlarına ulaşmak için kullanılır.")]
+        public async Task Kod(CommandContext ctx, DiscordUser user = null)
+        {
+            await ctx.Channel.SendMessageAsync("https://github.com/sinnertenshi/mei-chan");
+        }
     }
 }
