@@ -29,7 +29,7 @@ namespace mei
                 StringPrefixes = new[] { "!" } // prefixi buradan değiştirilebilir.
             });
 
-            commands.RegisterCommands < Announcements > ();
+            commands.RegisterCommands < Write > ();
 
 
             discord.MessageCreated += async (s, e) =>

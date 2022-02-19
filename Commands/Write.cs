@@ -10,7 +10,7 @@ using DSharpPlus.CommandsNext.Attributes;
 namespace mei.Commands
 {
 
-    public class Announcements : BaseCommandModule
+    public class Write : BaseCommandModule
     {   
         [Command("yaz"), Aliases("write","wrote","yazdır","say"), Description("Bota istediğinizi yazdırır."), RequirePermissions(DSharpPlus.Permissions.Administrator)]
         public async Task GreetCommand(CommandContext ctx, [RemainingText] string name)
