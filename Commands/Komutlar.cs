@@ -62,5 +62,33 @@ namespace mei.Commands
         {
             await ctx.Channel.SendMessageAsync("https://github.com/sinnertenshi/mei-chan");
         }
+        
+        [Command("sil"), Aliases("temizle", "cc", "clear"), Description("Belirlediğiniz miktarda mesajları siler."), RequirePermissions(DSharpPlus.Permissions.ManageMessages)]
+        public async Task Sil(CommandContext ctx, int? amount = null)
+        {
+            var mesajlar = ctx.Channel.GetMessagesBeforeAsync(ctx.Message.Id, Convert.ToInt32(amount)).Result;
+            var silinecek = new List<DiscordMessage>();
+
+            if (amount <= 0) await ctx.Channel.SendMessageAsync("Olmayan mesaj nasıl silinebilir ki??");
+            if (amount == null) await ctx.Channel.SendMessageAsync("En azından kaç adet mesaj sileceğimi söyleeee!");
+            if (amount > 100) { await ctx.Channel.SendMessageAsync("Bu kadar mesajı silmek beni uğraştırır!"); return; }
+
+            foreach (var m in mesajlar)
+            {
+                if (m.Attachments.Count == 0)
+                {
+                    silinecek.Add(m);
+                }
+            }
+
+            await ctx.Channel.DeleteMessagesAsync(silinecek, null).ConfigureAwait(false);
+            await ctx.Message.DeleteAsync().ConfigureAwait(false);
+            var embed = new DiscordEmbedBuilder
+            {
+                Description = $"{amount} adet mesajı sildim!",
+                Timestamp = DateTime.UtcNow,
+            };
+            await ctx.Channel.SendMessageAsync(embed);
+        }
     }
 }
