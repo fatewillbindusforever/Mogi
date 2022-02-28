@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using System.Timers;
 using System.Collections;
 using System.Linq;
@@ -23,7 +24,7 @@ namespace mei
         {
             var discord = new DiscordClient(new DiscordConfiguration()
             {
-                Token = "bottokeni",
+                Token = "bottoken",
                 TokenType = TokenType.Bot,
                 AutoReconnect = true,
                 UseRelativeRatelimit = true,
@@ -47,33 +48,12 @@ namespace mei
             Console.WriteLine("Mei burada!");
             await Task.Delay(-1);
         }
-
         private static async Task MessageUpdated(DiscordClient s, MessageUpdateEventArgs e)
         {
+            var badWords = File.ReadLines(@"C:\----set location----- kufurler.txt");
             string msg = e.Message.Content.ToLower();
-            List<string> BadWords = new ()
-                    {
-                        "sikerim",
-                        "siktir",
-                        "sikecem",
-                        "ibne",
-                        "amına",
-                        "orospu",
-                        "gavat",
-                        "kahpe",
-                        "piç",
-                        "fuck",
-                        "motherfucker",
-                        "porno",
-                        "porn",
-                        "sikiş",
-                        "sikişelim",
-                        "sikik",
-                        "sikis",
-                        "göt",
-                    };
 
-            if (BadWords.Any(x => msg.Contains(x)))
+            if (badWords.Any(x => msg.Contains(x)))
             {
                 await e.Message.DeleteAsync();
                 await e.Message.Channel.SendMessageAsync("Şşş küfür yok!");
@@ -119,30 +99,10 @@ namespace mei
                 await e.Message.RespondAsync("Aleyküm Selam.");
             }
 
+            var badWords = File.ReadLines(@"C:\----set location----- kufurler.txt");
             string msg = e.Message.Content.ToLower();
-            List<string> BadWords = new ()
-                    {
-                        "sikerim",
-                        "siktir",
-                        "sikecem",
-                        "ibne",
-                        "amına",
-                        "orospu",
-                        "gavat",
-                        "kahpe",
-                        "piç",
-                        "fuck",
-                        "motherfucker",
-                        "porno",
-                        "porn",
-                        "sikiş",
-                        "sikişelim",
-                        "sikik",
-                        "sikis",
-                        "göt",
-                    };
 
-            if (BadWords.Any(x => msg.Contains(x)))
+            if (badWords.Any(x => msg.Contains(x)))
             {
                 await e.Message.DeleteAsync();
                 await e.Message.Channel.SendMessageAsync("Şşş küfür yok!");
@@ -150,7 +110,7 @@ namespace mei
         }
         private static async Task GuildMemberAdded(DiscordClient s, GuildMemberAddEventArgs e)
         {
-            var kanal = await s.GetChannelAsync(kanalidsi);
+            var kanal = await s.GetChannelAsync(channelid);
             var embed = new DiscordEmbedBuilder
             {
                 Description = $"{e.Member.Mention} aramıza katıldı!",
