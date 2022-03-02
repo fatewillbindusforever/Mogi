@@ -9,7 +9,7 @@ using DSharpPlus.CommandsNext.Attributes;
 using DSharpPlus.Entities;
 using DSharpPlus.Interactivity.Extensions;
 
-namespace mei.Commands
+namespace mogi.Commands
 {
 
     public class Komutlar : BaseCommandModule
@@ -57,10 +57,10 @@ namespace mei.Commands
             }
         }
         
-        [Command("kod"), Aliases("github", "opensource"), Description("Botun kaynak kodlarına ulaşmak için kullanılır.")]
+        [Command("kod"), Aliases("github"), Description("Botun kaynak kodlarına ulaşmak için kullanılır.")]
         public async Task Kod(CommandContext ctx, DiscordUser user = null)
         {
-            await ctx.Channel.SendMessageAsync("https://github.com/sinnertenshi/mei-chan");
+            await ctx.Channel.SendMessageAsync("https://github.com/sinnertenshi/Mogi");
         }
         
         [Command("sil"), Aliases("temizle", "cc", "clear"), Description("Belirlediğiniz miktarda mesajları siler."), RequirePermissions(DSharpPlus.Permissions.ManageMessages)]
