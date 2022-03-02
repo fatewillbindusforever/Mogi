@@ -10,9 +10,9 @@ using DSharpPlus.CommandsNext;
 using DSharpPlus.CommandsNext.Attributes;
 using DSharpPlus.Entities;
 using DSharpPlus.EventArgs;
-using mei.Commands;
+using mogi.Commands;
 
-namespace mei
+namespace mogi
 {
     class Program
     {
@@ -45,7 +45,7 @@ namespace mei
             commands.SetHelpFormatter<CustomHelpFormatter>();
 
             await discord.ConnectAsync();
-            Console.WriteLine("Mei burada!");
+            Console.WriteLine("Mogi burada!");
             await Task.Delay(-1);
         }
 
