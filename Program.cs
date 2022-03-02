@@ -48,17 +48,6 @@ namespace mei
             Console.WriteLine("Mei burada!");
             await Task.Delay(-1);
         }
-        /*private static async Task MessageUpdated(DiscordClient s, MessageUpdateEventArgs e)
-        {
-            var badWords = File.ReadLines(@"C:\----set location----- kufurler.txt");
-            string msg = e.Message.Content.ToLower();
-
-            if (badWords.Any(x => msg.Contains(x)))
-            {
-                await e.Message.DeleteAsync();
-                await e.Message.Channel.SendMessageAsync("Şşş küfür yok!");
-            }
-        }*/
 
         private static async Task MessageCreated(DiscordClient s, MessageCreateEventArgs e)
         {
@@ -98,15 +87,6 @@ namespace mei
             {
                 await e.Message.RespondAsync("Aleyküm Selam.");
             }
-
-            /*var badWords = File.ReadLines(@"C:\----set location----- kufurler.txt");
-            string msg = e.Message.Content.ToLower();
-
-            if (badWords.Any(x => msg.Contains(x)))
-            {
-                await e.Message.DeleteAsync();
-                await e.Message.Channel.SendMessageAsync("Şşş küfür yok!");
-            }*/
         }
         private static async Task GuildMemberAdded(DiscordClient s, GuildMemberAddEventArgs e)
         {
