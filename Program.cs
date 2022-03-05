@@ -16,7 +16,7 @@ namespace mogi
 {
     class Program
     {
-        public static void Main()
+        static void Main()
         {
             MainAsync().GetAwaiter().GetResult();
         }
