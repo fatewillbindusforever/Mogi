@@ -69,58 +69,7 @@ namespace mogi
         {
             if (!e.Message.Author.IsBot)
             {
-                if (e.Message.Content.ToLower() == "selam")
-                {
-                    await e.Message.RespondAsync("Selam!");
-                }
-                if (e.Message.Content.ToLower() == "merhaba")
-                {
-                    await e.Message.RespondAsync("Merhaba!");
-                }
-                if (e.Message.Content.ToLower() == "mrb")
-                {
-                    await e.Message.RespondAsync("Merhaba!");
-                }
-                else if (e.Message.Content.ToLower() == "slm")
-                {
-                    await e.Message.RespondAsync("Selam!");
-                }
-                else if (e.Message.Content.ToLower() == "naber")
-                {
-                    await e.Message.RespondAsync("İyi senden?");
-                }
-                else if (e.Message.Content.ToLower() == "sa")
-                {
-                    await e.Message.RespondAsync("Aleyküm Selam.");
-                }
-                else if (e.Message.Content.ToLower() == "selamun aleyküm")
-                {
-                    await e.Message.RespondAsync("Aleyküm Selam!");
-                }
-                else if (e.Message.Content.ToLower() == "selamun aleykum")
-                {
-                    await e.Message.RespondAsync("Aleyküm Selam.");
-                }
-                else if (e.Message.Content.ToLower() == "ping")
-                {
-                    await e.Message.RespondAsync("pong!");
-                }
-                else if (e.Message.Content.ToLower() == "nbr")
-                {
-                    await e.Message.RespondAsync("İyi senden?");
-                }
-                else if (e.Message.Content.ToLower() == "sea")
-                {
-                    await e.Message.RespondAsync("Aleyküm Selam.");
-                }
-                /*else if (e.Message.Content.ToLower() == "bumptest")
-                {
-                    if (e.Author.Id == authorid)
-                    {
-                        var bRole = e.Guild.GetRole(roleid);
-                        await e.Channel.SendMessageAsync($"Bumplaaa! {bRole.Mention}");
-                    }
-                }*/
+                if (e.Message.Content.ToLower() == "selam") await e.Message.RespondAsync("Selam!");
                 else if (e.Message.Content.ToLower() == "mogi")
                 {
                     string[] mMsg = {
